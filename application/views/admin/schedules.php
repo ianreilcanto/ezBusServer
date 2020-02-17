@@ -9,19 +9,23 @@
         <tr>
             <th>Origin and Distination</th>
             <th>Time</th>
-            <th>Seats</th>
+            <!-- <th>Seats</th> -->
             <th>Option</th>
         </tr>
     </thead>
     <tbody id="myTable">
-        <tr>
-            <td>Dumaguete - Bayawan</td>
-            <td>
-                4:30 am
-            </td>
-            <td>56</td>
-            <td><button type="button" class="btn btn-outline-danger">Delete</button></td>
-        </tr>   
+
+      <?php foreach( $schedules as $schedule ){ ?>
+          <tr>
+              <td><?php echo $schedule->routeName; ?></td>
+              <td>
+                  <?php echo $schedule->tripSchedule; ?>
+              </td>
+              <td>
+                <a href="javascript:void(0)" style="margin-left: 0 !important;" class="btn btn-outline-danger">Delete</a>
+              </td>
+          </tr> 
+      <?php } ?>  
     </tbody>
 </table>
 

@@ -10,27 +10,64 @@ class Admin extends CI_Controller {
 		if(!isset($this->session->isLogin)){
 			redirect( base_url() );
 		}
+
+		
 	
     }
 
 	public function index()
 	{
-		$this->renderView('schedules');
+
+		
+		$this->load->model('admin_model');
+
+		$sched = $this->admin_model->getSchedules();
+
+		echo "<pre>";
+			print_r($sched);
+		echo "</pre>";
+
+		$data['schedules'] = $sched;
+
+		$this->renderView('schedules',$data);
 	}
 
 	public function drivers(){
 
-		$this->renderView('drivers');
+		$this->load->model('admin_model');
+
+		$sched = $this->admin_model->getSchedules();
+
+		// echo "<pre>";
+		// 	print_r($sched);
+		// echo "</pre>";
+
+		$data['schedules'] = $sched;
+
+
+		$this->renderView('drivers',$data);
 		
 	}
 	public function bus(){
 
-		$this->renderView('bus');
+		$this->load->model('admin_model');
+
+		$sched = $this->admin_model->getSchedules();
+
+		// echo "<pre>";
+		// 	print_r($sched);
+		// echo "</pre>";
+
+		$data['schedules'] = $sched;
+
+
+
+		$this->renderView('bus',$data);
 
 	}
 
 
-	public function renderView($viewName){
+	public function renderView($viewName,$data){
 
 		$this->load->view('common/header');
 		
@@ -41,7 +78,7 @@ class Admin extends CI_Controller {
 				</div>';
 
 				$this->load->view('common/nav');
-				$this->load->view('admin/'.$viewName);
+				$this->load->view('admin/'.$viewName, $data);
 			echo '</div>';
         $this->load->view('common/footer');
 
